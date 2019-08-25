@@ -2,6 +2,7 @@
 import React from 'react';
 import Header from './components/Header';
 import ScrollList from './components/ScrollList';
+import Loading from './components/Loading';
 import Footer from './components/Footer';
 import * as API from './API';
 
@@ -10,6 +11,8 @@ const PAGE_SIZE = 10;
 class App extends React.Component{
     constructor(){
         super();
+        // 控制请求的开关
+        this.isLoading = false;
         this.state = {
             // 列表数据
             data: [],
@@ -41,25 +44,35 @@ class App extends React.Component{
                 isPageLoading: false,
                 pageNo: 1
             })
+            console.log('第一页数据', res.data)
         }, ()=>{
             console.log('页面加载失败')
         })
     }
-    onEndReached(){
-        this.loadNext()
+    onEndReached = () => {
+        if(!this.isLoading){
+            this.loadNext()
+        }
     }
     loadNext = () => {
         const targetNo = this.state.pageNo + 1;
+        this.isLoading = true;
+        this.setState({
+            isLoadingNext: true,
+        })
         API.getList({
             pageNo: targetNo,
             pageSize: PAGE_SIZE
         }).then((res)=>{
+            this.isLoading = false;
+            console.log(`第${this.state.pageNo+1}页数据`, res.data)
             this.setState({
                 data: this.state.data.concat(res.data),
                 isLoadingNext: false,
                 pageNo: targetNo
             })
         }, ()=>{
+            this.isLoading = false;
             console.log('页面加载失败')
         })
     }
@@ -75,7 +88,7 @@ class App extends React.Component{
                         data={this.state.data}
                         onEndReached={this.onEndReached}
                     />
-                    {this.renderListFooter}
+                    {this.renderListFooter()}
                 </React.Fragment>
             )
         }
@@ -84,9 +97,10 @@ class App extends React.Component{
         if(this.state.isLoadNextError){
             return <div>加载下一页失败</div>
         } else if(this.state.isLoadingNext){
+            console.log(this.state.isLoadingNext)
             return <div>加载中...</div>
         } else {
-            return null;
+            return <Loading />;
         }
     }
     render = () => {
