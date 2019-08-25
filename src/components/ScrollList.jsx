@@ -24,7 +24,7 @@ export default class ScrollList extends React.Component{
 
     render(){
         return(
-           <div>
+           <div className="sroll-list">
                {
                    this.props.data.map((item, index)=>{
                        return <ListItem key={index} data={item} />

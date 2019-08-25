@@ -1,4 +1,5 @@
 import React from 'react';
+import logo from '../static/images/logo.gif';
 
 export default class Header extends React.Component{
     constructor(props){
@@ -10,7 +11,12 @@ export default class Header extends React.Component{
 
     render(){
         return(
-            <h1>Header</h1>
+            <h1 className="header">
+                <p>
+                    <img src={logo} alt="logo" />
+                </p>
+                <span>PictureFamily</span>
+            </h1>
         )
     }
 }

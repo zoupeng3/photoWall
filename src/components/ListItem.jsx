@@ -11,9 +11,9 @@ export default class ListItem extends React.Component{
     render(){
         const {url, title} = this.props.data;
         return(
-            <div>
-                <span>{title}</span>
+            <div className='list-item'>
                 <img src={url} alt={title} />
+                <span>{title}</span>
             </div>
         )
     }

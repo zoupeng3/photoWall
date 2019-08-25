@@ -4,9 +4,16 @@ import Header from './components/Header';
 import ScrollList from './components/ScrollList';
 import Loading from './components/Loading';
 import Footer from './components/Footer';
+import './static/styles.css';
 import * as API from './API';
 
-const PAGE_SIZE = 10;
+window.isPC = document.body.clientWidth > document.body.clientHeight;
+console.log('isPC', window.isPC)
+
+let PAGE_SIZE = 5;
+if(window.isPC){
+    PAGE_SIZE = 9;
+}
 
 class App extends React.Component{
     constructor(){
@@ -80,7 +87,7 @@ class App extends React.Component{
         if(this.state.isPageError){
             return <div>页面加载失败请刷新</div>
         } else if(this.state.isPageLoading){
-            return <div>页面加载中...</div>
+            return <Loading />
         } else {
             return (
                 <React.Fragment>
@@ -97,15 +104,18 @@ class App extends React.Component{
         if(this.state.isLoadNextError){
             return <div>加载下一页失败</div>
         } else if(this.state.isLoadingNext){
-            console.log(this.state.isLoadingNext)
-            return <div>加载中...</div>
+            return <Loading />
         } else {
-            return <Loading />;
+            return null;
         }
     }
     render = () => {
+        let className = 'App';
+        if(window.isPC){
+            className='App PC'
+        }
         return (
-            <div className="App">
+            <div className={className}>
                 <Header />
                 {this.renderContent()}
                 <Footer />

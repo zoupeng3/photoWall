@@ -10,7 +10,7 @@ export default class Footer extends React.Component{
 
     render(){
         return(
-            <h1>页面Footer</h1>
+            <p style={{textAlign:'center', padding: '5%'}}>copyright</p>
         )
     }
 }

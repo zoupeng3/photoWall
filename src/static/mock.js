@@ -4,53 +4,55 @@ const mock = [
     title: '图片1'
 },
 {
-    url: 'https://m.baidu.com/se/static/img/iphone/logo_web.png',
+    url: 'https://hbimg.huabanimg.com/555f3082d0b93d9535bbc779c9318b44ce47721ca700-Wc6l65_fw658',
     title: '图片2'
 },
 {
-    url: 'https://hbimg.huabanimg.com/37557cfd24fa64c6fa8f23404b956dad67e9ff00711cc8-xqXIu5_sq320',
+    url: 'http://pic1.win4000.com/pic/a/47/918094b2e0_250_300.jpg',
     title: '图片3'
 },
 {
-    url: 'https://m.baidu.com/se/static/img/iphone/logo_web.png',
+    url: 'http://img5.imgtn.bdimg.com/it/u=1006794532,232747513&fm=11&gp=0.jpg',
     title: '图片4'
 },
 {
-    url: 'https://hbimg.huabanimg.com/f677c48f9b519a6fb5a93aecc9d3301b328d3eee5acaa-z7unep_sq320',
+    url: 'http://pic1.win4000.com/tj/2019-08-09/5d4d239cdb3e3.jpg',
     title: '图片5'
 },
 {
-    url: 'https://m.baidu.com/se/static/img/iphone/logo_web.png',
+    url: 'http://pic1.win4000.com/tj/2019-08-16/5d560cb4e7e50.jpg',
     title: '图片1'
 },
 {
-    url: 'https://m.baidu.com/se/static/img/iphone/logo_web.png',
+    url: 'http://pic1.win4000.com/wallpaper/2018-07-19/5b5070ca77cee.jpg',
     title: '图片6'
 },
 {
-    url: 'https://m.baidu.com/se/static/img/iphone/logo_web.png',
+    url: 'http://pic1.win4000.com/tj/2019-08-16/5d5658b62c076.jpg',
     title: '图片6'
 },
 {
-    url: 'https://m.baidu.com/se/static/img/iphone/logo_web.png',
+    url: 'http://pic1.win4000.com/tj/2019-08-16/5d56591a515f2.jpg',
     title: '图片8'
 },
 {
-    url: 'https://m.baidu.com/se/static/img/iphone/logo_web.png',
+    url: 'http://img5.imgtn.bdimg.com/it/u=1006794532,232747513&fm=11&gp=0.jpg',
     title: '图片9'
 },
 {
-    url: 'https://m.baidu.com/se/static/img/iphone/logo_web.png',
+    url: 'http://pic1.win4000.com/tj/2019-08-16/5d5658b62c076.jpg',
     title: '图片10'
 },
 
 ]
 export const getMockList = ({pageNo, pageSize=5}) => {
+    console.log('pageSize', pageSize)
     let list = [];
     for(let i=0;i<pageSize;i++){
+        const r = Math.floor(Math.random() * (9 - 1 + 1)+1);
         list[i] = {
-            title: `图片${parseInt(pageNo)}-${i+1}`,
-            url: mock[i].url
+            title: `图片:${parseInt(pageNo)}页-No.${i+1}`,
+            url: mock[r].url
         }
     }
     return {
