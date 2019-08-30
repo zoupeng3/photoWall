@@ -13,10 +13,13 @@ html,body{
     margin-bottom: 5%;
     height: 60px;
     align-items: center;
+    background-color: #20232a;
+    text-align: center;
 }
 .header span{
     flex: 1;
     text-shadow: 5px 5px 5px rgb(209, 111, 172);
+    color: #61dafb;
 }
 .header p{
     flex: 1;
